@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель администратора — Кибер Щит</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🛡️ ПАНЕЛЬ АДМИНИСТРАТОРА</a>
+    <nav>
+      <a href="index.html">На сайт</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Управление заявками студентов</h2>
+
+    
+    <div class="card" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+      <label style="margin: 0; font-weight: bold;">Фильтрация по статусу:</label>
+      <select id="filter" style="width: 250px;" onchange="filterStatus()">
+        <option value="all">Все статусы</option>
+        <option value="new">Новая</option>
+        <option value="work">В работе</option>
+        <option value="done">Завершена</option>
+      </select>
+    </div>
+
+    <!-- Таблица заявок -->
+    <div class="card table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Студент</th>
+            <th>Курс</th>
+            <th>Статус</th>
+            <th>Управление статусом</th>
+          </tr>
+        </thead>
+        <tbody id="adminTable">
+          <tr data-status="new">
+            <td>Иван Смирнов</td>
+            <td>Криптография</td>
+            <td><span class="badge badge-new">Новая</span></td>
+            <td>
+              <button class="btn" style="width: auto; padding: 6px 14px; font-size: 0.9rem;" onclick="updateStatus(this, 'work')">В работу</button>
+            </td>
+          </tr>
+          <tr data-status="work">
+            <td>Алексей Васильев</td>
+            <td>Анализ уязвимостей</td>
+            <td><span class="badge badge-work">В работе</span></td>
+            <td>
+              <button class="btn" style="width: auto; padding: 6px 14px; font-size: 0.9rem;" onclick="updateStatus(this, 'done')">Завершить</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Пагинация (постраничный вывод) -->
+      <div style="display: flex; gap: 8px; margin-top: 25px; justify-content: center;">
+        <button style="padding: 8px 14px; background: #1f2937; color: #fff; border: 1px solid var(--border); border-radius: 6px; cursor: pointer;">1</button>
+        <button style="padding: 8px 14px; background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 6px; cursor: pointer;">2</button>
+        <button style="padding: 8px 14px; background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 6px; cursor: pointer;">&gt;</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="toast" id="toast">Статус заявки успешно обновлен!</div>
+
+  <script>
+    function updateStatus(btn, status) {
+      const row = btn.closest('tr');
+      const badge = row.querySelector('.badge');
+      
+      if (status === 'work') {
+        badge.className = 'badge badge-work';
+        badge.innerText = 'В работе';
+        row.setAttribute('data-status', 'work');
+        btn.innerText = 'Завершить';
+        btn.setAttribute('onclick', "updateStatus(this, 'done')");
+      } else if (status === 'done') {
+        badge.className = 'badge badge-done';
+        badge.innerText = 'Завершена';
+        row.setAttribute('data-status', 'done');
+        btn.style.display = 'none'; // Скрываем кнопку, когда завершено
+      }
+
+      
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2500);
+    }
+
+    function filterStatus() {
+      const val = document.getElementById('filter').value;
+      const rows = document.querySelectorAll('#adminTable tr');
+      rows.forEach(r => {
+        if (val === 'all' || r.getAttribute('data-status') === val) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

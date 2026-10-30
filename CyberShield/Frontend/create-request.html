@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Формирование заявки — Кибер Щит</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🛡️ КИБЕР ЩИТ</a>
+    <nav>
+      <a href="profile.html">Личный кабинет</a>
+    </nav>
+  </header>
+
+  <div class="container" style="max-width: 600px;">
+    <div class="card">
+      <h2>Новая заявка на обучение</h2>
+      <form id="reqForm">
+        <div class="form-group">
+          <label>Наименование курса</label>
+          <select id="course" required>
+            <option value="">Выберите курс из списка...</option>
+            <option value="Основы пентеста">Основы пентеста</option>
+            <option value="Криптография">Криптография</option>
+            <option value="Сетевая безопасность">Сетевая безопасность</option>
+            <option value="Анализ уязвимостей">Анализ уязвимостей</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Желаемая дата начала обучения</label>
+          <input type="date" id="startDate" required>
+        </div>
+        <button type="submit" class="btn">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('reqForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Заявка успешно сформирована и зарегистрирована!');
+      window.location.href = 'profile.html';
+    });
+  </script>
+</body>
+</html>

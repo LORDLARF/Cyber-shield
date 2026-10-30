@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кибер Щит — Главная</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🛡️ КИБЕР ЩИТ</a>
+    <nav>
+      <a href="index.html" class="active">Главная</a>
+      <a href="create-request.html">Заявка</a>
+      <a href="profile.html">Кабинет</a>
+      <a href="admin.html">Админ</a>
+      <a href="login.html">Вход</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Передовые направления кибербезопасности</h2>
+    
+    
+    <div class="slider-container">
+      <div class="slides" id="slides">
+        <img class="slide" src="https://png.pngtree.com/background/20250104/original/pngtree-cybersecurity-shield-with-lock-digital-data-protection-concept-picture-image_15742487.jpg" alt="Пентест">
+        <img class="slide" src="https://avatars.mds.yandex.net/i?id=b0767c35e8b0329a91936b403b1dfba9_l-3995454-images-thumbs&n=13" alt="Криптография">
+        <img class="slide" src="https://png.pngtree.com/background/20250104/original/pngtree-comprehensive-cybersecurity-solutions-for-internet-and-networking-picture-image_15883328.jpg" alt="Сетевая безопасность">
+        <img class="slide" src="https://avatars.mds.yandex.net/i?id=224306ca65aaeb817708a3042d18ed06_l-5248224-images-thumbs&n=13" alt="Уязвимости">
+      </div>
+      <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+      <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
+    </div>
+
+    <div class="card">
+      <h3>Защитите цифровое пространство вместе с нами</h3>
+      <p style="color: var(--text-muted); line-height: 1.6; margin-top: 10px;">
+        Платформа «Кибер Щит» предоставляет уникальные практические курсы для подготовки специалистов мирового уровня. Выберите интересующее направление и начните обучение уже сегодня.
+      </p>
+      <br>
+      <a href="create-request.html"><button class="btn">Подать заявку на курс</button></a>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const totalSlides = 4;
+    let index = 0;
+
+    function showSlide(i) {
+      index = (i + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(${-index * 100}%)`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => showSlide(index + 1));
+    document.getElementById('prevBtn').addEventListener('click', () => showSlide(index - 1));
+
+    
+    setInterval(() => showSlide(index + 1), 3000);
+  </script>
+</body>
+</html>

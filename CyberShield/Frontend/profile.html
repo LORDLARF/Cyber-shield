@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — Кибер Щит</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🛡️ ЛИЧНЫЙ КАБИНЕТ</a>
+    <nav>
+      <a href="create-request.html">+ Подать заявку</a>
+      <a href="index.html">Выход</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>История ваших заявок</h2>
+    <div class="card table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Наименование курса</th>
+            <th>Дата старта</th>
+            <th>Статус обучения</th>
+            <th>Действие (Отзыв)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Основы пентеста</td>
+            <td>15.11.2026</td>
+            <td><span class="badge badge-work">В работе</span></td>
+            <td><button disabled style="opacity: 0.4; padding: 8px 14px; background: transparent; color: #fff; border: 1px solid var(--border); border-radius: 6px;">Недоступно</button></td>
+          </tr>
+          <tr>
+            <td>Сетевая безопасность</td>
+            <td>01.09.2026</td>
+            <td><span class="badge badge-done">Завершено</span></td>
+            <td><button class="btn" style="padding: 8px 16px; width: auto;" onclick="openReview()">Оставить отзыв</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="card" id="reviewBox" style="display: none;">
+      <h3>Оставить отзыв о курсе "Сетевая безопасность"</h3>
+      <div class="form-group" style="margin-top: 15px;">
+        <textarea rows="4" placeholder="Поделитесь впечатлениями об учебном процессе..."></textarea>
+      </div>
+      <button class="btn" style="width: auto; padding: 10px 25px;" onclick="sendReview()">Отправить отзыв</button>
+    </div>
+  </div>
+
+  <script>
+    function openReview() {
+      const box = document.getElementById('reviewBox');
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+    function sendReview() {
+      alert('Спасибо! Ваш отзыв успешно сохранен.');
+      document.getElementById('reviewBox').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

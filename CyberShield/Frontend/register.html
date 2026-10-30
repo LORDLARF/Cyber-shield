@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Кибер Щит</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">🛡️ КИБЕР ЩИТ</a>
+    <nav>
+      <a href="login.html">Вход</a>
+    </nav>
+  </header>
+
+  <div class="container" style="max-width: 500px;">
+    <div class="card">
+      <h2>Регистрация аккаунта</h2>
+      <form id="regForm">
+        <div class="form-group">
+          <label>Логин</label>
+          <input type="text" id="login" placeholder="Придумайте логин" required>
+          <div class="error-msg" id="loginErr">Этот логин уже занят в базе</div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="name@example.com" required>
+          <div class="error-msg" id="emailErr">Неверный формат email адреса</div>
+        </div>
+        <div class="form-group">
+          <label>Пароль</label>
+          <input type="password" id="pass" placeholder="••••••••" required>
+        </div>
+        <div class="form-group">
+          <label>Подтверждение пароля</label>
+          <input type="password" id="confirmPass" placeholder="••••••••" required>
+          <div class="error-msg" id="passErr">Пароли не совпадают</div>
+        </div>
+        <button type="submit" class="btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const login = document.getElementById('login').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('pass').value;
+      const confirmPass = document.getElementById('confirmPass').value;
+
+      let valid = true;
+
+      
+      if (login.toLowerCase() === 'admin' || login.toLowerCase() === 'user') {
+        document.getElementById('loginErr').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('loginErr').style.display = 'none';
+      }
+
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        document.getElementById('emailErr').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('emailErr').style.display = 'none';
+      }
+
+      
+      if (pass !== confirmPass) {
+        document.getElementById('passErr').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('passErr').style.display = 'none';
+      }
+
+      if (valid) {
+        alert('Регистрация прошла успешно! Данные записаны в базу.');
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+</body>
+</html>
